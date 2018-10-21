@@ -3,14 +3,19 @@ package com.hacka.untitled.utitled_api.controller;
 
 import com.hacka.untitled.utitled_api.model.Comments;
 import com.hacka.untitled.utitled_api.model.Evaluation;
+import com.hacka.untitled.utitled_api.model.Google;
 import com.hacka.untitled.utitled_api.repositories.CommentsRepository;
 import com.hacka.untitled.utitled_api.repositories.EvaluationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/avaliacao")
 public class EvaluationController {
@@ -23,14 +28,34 @@ public class EvaluationController {
 
     Evaluation eval = new Evaluation();
 
-
     @GetMapping(value = "/{bairro}")
     public Evaluation getEvaluation(@PathVariable("bairro") String bairro) {
 
         System.out.println(String.format("GET /avaliacao/bairro : %s", bairro));
 
+        String url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+ bairro +"&key=AIzaSyBpE_YblyPU_Go0N7YxLkmhwuYXg6SGDmU";
 
-        return evaluationRepo.findByBairro(bairro);
+        //RestTemplate restTemplate = new RestTemplate();
+        Google go = new Google();
+
+//       System.out.println(go.get(bairro).substring(0, go.get(bairro).indexOf("São")));
+//       Evaluation j = evaluationRepo.findByBairro(go.get(bairro));
+//       if (j == null){
+//           eval.setBairro(go.get(bairro).substring( 0, go.get(bairro).indexOf(",")).toLowerCase());
+//           evaluationRepo.save(eval);
+//           return evaluationRepo.findByBairro(go.get(bairro).substring(0, go.get(bairro).indexOf(",")).toLowerCase());
+//
+//
+//       }
+//        evaluationRepo.findByBairro(go.get(bairro).substring( 0, go.get(bairro).indexOf(",")).toLowerCase());toLowerCase
+
+
+        try {
+            return evaluationRepo.findByBairro(go.get(bairro).substring(0, go.get(bairro).indexOf(",")).toLowerCase());
+        }catch (NullPointerException e){
+            System.out.println("chandler" + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping(value = "/")
