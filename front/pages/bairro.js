@@ -27,12 +27,13 @@ const styles = theme => ({
     flexGrow: 1,
   },
   card: {
+    borderLeft:'2px solid blue',
     marginTop:16,
     // width: '70%',
   },
 });
 
-class About extends React.Component {
+class Bairro extends React.Component {
   state = {
     isMarkerShown: false,
     positiveComments: true,
@@ -114,50 +115,73 @@ class About extends React.Component {
     return (
       <div>
         <Header search={true} searchValue={query.nome} />
+        <br />
         <Grid container justify="center" className={classes.root} spacing={16} style={{padding: '0px 16px'}}>
           {query.nome &&
-            <div>
-            <Grid item xs={6} md={4}>
-            <Typography variant="h6" gutterBottom>
-              Busca
-              <MyMapComponent
-                isMarkerShown={this.state.isMarkerShown}
-                onMarkerClick={this.handleMarkerClick}
-              />
-            </Typography>
-          </Grid>
-          <Grid item xs={6} md={3}>
-          <Grid container>
-            <Grid item xs={12}>
-            <Typography variant="h6" gutterBottom>
-              Status
-            </Typography>
+            <React.Fragment>
+            <Grid item xs={6} md={6}>
+            <Grid container>
+              <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom>
+                Status
+              </Typography>
+              <Typography color="textSecondary">(baseado em 90 avaliações)</Typography>
             </Grid>
-              <Grid item xs={6}><Typography>Vida noturna</Typography></Grid>
-              <Grid item xs={6}><Line strokeWidth="5" percent={this.state.percents[0]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Segurança</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[1]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Ruídos diurno</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[2]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Ruídos noite</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[3]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Crianças pelo bairro</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[4]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Jovens pelo bairro</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[5]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Idosos pelo bairro</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[6]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Fluxo veículos</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[7]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Comércio</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[8]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Residência</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[9]} /></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Typography>Lazer</Typography></Grid>
-              <Grid style={{marginTop:12}} item xs={6}><Line strokeWidth="5" percent={this.state.percents[10]} /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/vida_noturna.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Vida noturna</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[0]} />
+              </Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/seguranca.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Segurança</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[1]} />
+              </Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/ruidos.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Ruídos</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[3]} />
+              </Grid>
+              {/*<Grid style={{marginTop:12}} item xs={3}><Typography>Ruídos diurno</Typography></Grid>
+              <Grid style={{marginTop:12}} item xs={3}><Line strokeWidth="5" percent={this.state.percents[2]} /></Grid>*/}
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/criancas.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Crianças</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[4]} />
+              </Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/jovens.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Jovens</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[5]} />
+              </Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/idosos.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Idosos</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[6]} />
+              </Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/fluxo.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Fluxo de veículos</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[7]} />
+              </Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/comercio.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Comércio</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[8]} />
+              </Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/residencia.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Residências</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[9]} />
+              </Grid>
+              <Grid style={{marginTop:12}} item xs={3}><img src="/static/lazer.png" /></Grid>
+              <Grid style={{marginTop:12}} item xs={3}>
+                <Typography>Lazer</Typography>
+                <Line strokeWidth="5" percent={this.state.percents[10]} />
+              </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={6}>
             <Typography variant="h6" gutterBottom>
               Comentários
             </Typography>
@@ -178,7 +202,7 @@ class About extends React.Component {
               </div>
               <br />
               <div style={{overflowY: 'scroll', height: '60vh'}}>
-              {this.state.visibleComments.map(comment => (
+              {this.state.visibleComments.map((comment, i)=> (
                 <Card className={classes.card}>
                   <CardContent>
                   <Typography gutterBottom variant="subtitle2" style={{textAlign:'left'}}>{comment.comments_name}</Typography>
@@ -194,7 +218,18 @@ class About extends React.Component {
               ))}
             </div>
           </Grid>
-          </div>
+            <Grid item xs={12} md={8}>
+            <Typography variant="h6" gutterBottom>
+              Localização
+              <MyMapComponent
+                isMarkerShown={this.state.isMarkerShown}
+                onMarkerClick={this.handleMarkerClick}
+              />
+            </Typography>
+          </Grid>
+          <Grid item xs={6} md={6}>
+          </Grid>
+          </React.Fragment>
           }
           {!query.nome &&
               <Typography style={{marginTop: 32}} variant="h6" gutterBottom>Bairro inválido ou não encontrado</Typography>
@@ -205,8 +240,8 @@ class About extends React.Component {
   }
 };
 
-About.propTypes = {
+Bairro.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(About);
+export default withStyles(styles)(Bairro);

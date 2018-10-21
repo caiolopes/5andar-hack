@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -179,7 +180,7 @@ class Header extends React.Component {
               <MenuIcon />
             </IconButton>*/}
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Conta Aê
+              <a href={'/'} style={{textDecoration:'none', color:'white'}}>Conta+mais</a> <img src="/static/mini-logo.png" />
             </Typography>
             {search &&
               <div className={classes.search}>
