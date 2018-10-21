@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,6 +12,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
+import FilledInput from '@material-ui/core/FilledInput';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import classNames from 'classnames';
+import Grid from '@material-ui/core/Grid';
 
 import Header from '../components/Header';
 
@@ -18,6 +32,9 @@ const styles = theme => ({
   root: {
     textAlign: 'center',
     // paddingTop: theme.spacing.unit * 20,
+  },
+  textField: {
+    flexBasis: 200,
   },
 });
 
@@ -44,32 +61,37 @@ class Index extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Header />
-        <Dialog open={open} onClose={this.handleClose}>
-          <DialogTitle>Super Secret Password</DialogTitle>
-          <DialogContent>
-            <DialogContentText>1-2-3-4-5</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button color="primary" onClick={this.handleClose}>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Typography variant="h4" gutterBottom>
-          Material-UI
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          example project
-        </Typography>
-        <Typography gutterBottom>
-          <Link href="/about">
-            <a>Go to the about page</a>
+        <Header search={false}/>
+        <br />
+        <br />
+        <br />
+        <Grid container justify='center' alignItems='center'>
+          <Grid item xs={12}>
+          <TextField
+            id="outlined-simple-start-adornment"
+            className={classNames(classes.margin, classes.textField)}
+            variant="outlined"
+            label="Cidade"
+            // InputProps={{
+            //   startAdornment: <InputAdornment position="start">Cidade</InputAdornment>,
+            // }}
+          />
+          &nbsp;&nbsp;&nbsp;
+          <TextField
+            id="outlined-simple-start-adornment"
+            className={classNames(classes.margin, classes.textField)}
+            variant="outlined"
+            label="Bairro"
+            // InputProps={{
+            //   startAdornment: <InputAdornment position="start">Bairro</InputAdornment>,
+            // }}
+          />
+          &nbsp;&nbsp;&nbsp;
+          <Link href="/bairro">
+            <Button variant="contained" color="primary">Buscar</Button>
           </Link>
-        </Typography>
-        <Button variant="contained" color="secondary" onClick={this.handleClick}>
-          Super Secret Password
-        </Button>
+        </Grid>
+        </Grid>
       </div>
     );
   }

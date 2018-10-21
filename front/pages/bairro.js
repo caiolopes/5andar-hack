@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 import Header from '../components/Header';
 import MyMapComponent from '../components/MyMapComponent';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   root: {
@@ -40,14 +41,18 @@ class About extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Header />
-        <Typography variant="h4" gutterBottom>
-          Busca
-          <MyMapComponent
-            isMarkerShown={this.state.isMarkerShown}
-            onMarkerClick={this.handleMarkerClick}
-          />
-        </Typography>
+        <Header search={true} />
+        <Grid container>
+          <Grid item xs={4}>
+            <Typography variant="h4" gutterBottom>
+              Busca
+              <MyMapComponent
+                isMarkerShown={this.state.isMarkerShown}
+                onMarkerClick={this.handleMarkerClick}
+              />
+            </Typography>
+          </Grid>
+        </Grid>
       </div>
     );
   }
