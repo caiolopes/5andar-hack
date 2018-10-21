@@ -40,20 +40,12 @@ const styles = theme => ({
 
 class Index extends React.Component {
   state = {
-    open: false,
-  };
+    bairro: '',
+  }
 
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
+  handleChange = (e) => {
+    this.setState({ bairro: e.target.value});
+  }
 
   render() {
     const { classes } = this.props;
@@ -81,13 +73,15 @@ class Index extends React.Component {
             id="outlined-simple-start-adornment"
             className={classNames(classes.margin, classes.textField)}
             variant="outlined"
+            value={this.state.bairro}
+            onChange={this.handleChange}
             label="Bairro"
             // InputProps={{
             //   startAdornment: <InputAdornment position="start">Bairro</InputAdornment>,
             // }}
           />
           &nbsp;&nbsp;&nbsp;
-          <Link href="/bairro">
+          <Link href={"/bairro/?nome=" + this.state.bairro}>
             <Button variant="contained" color="primary">Buscar</Button>
           </Link>
         </Grid>

@@ -89,6 +89,7 @@ const styles = theme => ({
 
 class Header extends React.Component {
   state = {
+    searchValue: '',
     anchorEl: null,
     mobileMoreAnchorEl: null,
   };
@@ -110,9 +111,17 @@ class Header extends React.Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  handleChange = (e) => {
+    this.setState({searchValue: e.target.value})
+  };
+
+  componentDidMount() {
+    this.setState({searchValue: this.props.searchValue});
+  }
+
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
-    const { classes, search, searchValue } = this.props;
+    const { classes, search } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -166,9 +175,9 @@ class Header extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+            {/*<IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
               <MenuIcon />
-            </IconButton>
+            </IconButton>*/}
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
               Conta Aê
             </Typography>
@@ -179,7 +188,8 @@ class Header extends React.Component {
                 </div>
                 <InputBase
                   placeholder="Busca..."
-                  value={searchValue}
+                  value={this.state.searchValue}
+                  onChange={this.handleChange}
                   classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
@@ -189,6 +199,7 @@ class Header extends React.Component {
             }
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+              {/*
               <IconButton color="inherit">
                 <Badge className={classes.margin} badgeContent={4} color="secondary">
                   <MailIcon />
@@ -199,6 +210,7 @@ class Header extends React.Component {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
+              */}
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
                 aria-haspopup="true"
