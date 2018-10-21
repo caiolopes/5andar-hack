@@ -14,6 +14,7 @@ import { Line } from 'rc-progress';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Paper from '@material-ui/core/Paper';
 
 function getPosNegStr(posNegBool) {
   if (posNegBool) return 'negative'
@@ -203,7 +204,7 @@ class Bairro extends React.Component {
               <br />
               <div style={{overflowY: 'scroll', height: '60vh'}}>
               {this.state.visibleComments.map((comment, i)=> (
-                <Card className={classes.card}>
+                <Card className={classes.card} style={{borderColor: this.state.positiveComments ? 'blue' : 'red'}}>
                   <CardContent>
                   <Typography gutterBottom variant="subtitle2" style={{textAlign:'left'}}>{comment.comments_name}</Typography>
                   <Typography component="p" style={{textAlign:'left'}}>
@@ -221,11 +222,21 @@ class Bairro extends React.Component {
             <Grid item xs={12} md={8}>
             <Typography variant="h6" gutterBottom>
               Localização
+            </Typography>
+            <div style={{position: 'relative', height:500}}>
               <MyMapComponent
                 isMarkerShown={this.state.isMarkerShown}
-                onMarkerClick={this.handleMarkerClick}
-              />
-            </Typography>
+                onMarkerClick={this.handleMarkerClick}/>
+              <Paper elevation={1} style={{position: 'absolute', zIndex:1, left:80, right:80, margin: '0 auto', bottom:20}}>
+                <Typography variant="h5" component="h3">
+                  Gostou do Bairro?
+                </Typography>
+                <Typography component="p">
+                  Confira os melhores apartamentos na área
+                </Typography>
+                <img src="/static/aluguel1.png" /> <img src="/static/aluguel3.png" />
+            </Paper>
+            </div>
           </Grid>
           <Grid item xs={6} md={6}>
           </Grid>
